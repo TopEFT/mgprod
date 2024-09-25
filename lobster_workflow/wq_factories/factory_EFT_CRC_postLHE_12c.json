@@ -5,5 +5,5 @@
     "memory": 16000,
     "disk": 13000,
     "workers-per-cycle": 50,
-    "condor-requirements": "(has_singularity)&&(OpSysAndVer == \"RedHat7\")"
+    "condor-requirements": "(has_singularity)&&(TARGET.OpSysAndVer == \"RedHat7\")"
 }

@@ -9,12 +9,14 @@ from lobster.core import AdvancedOptions, Category, Config, Dataset,ParentDatase
 sys.path.append(os.getcwd())
 from helpers.utils import regex_match, run_process
 
+MODIFIED_CFG_DIR = "python_cfgs/modified"
 timestamp_tag = datetime.datetime.now().strftime('%Y%m%d_%H%M')
 input_path = "/store/user/"
-input_path_full = "/hadoop" + input_path
+input_path_full = "/cms/cephfs/data" + input_path
+
 
 #master_label = 'EFT_testNAOD_T3_postLHE_{tstamp}'.format(tstamp=timestamp_tag)
-master_label = 'EFT_testNAOD_crc_postLHE_{tstamp}'.format(tstamp=timestamp_tag)
+master_label = 'EFT_GLADOSandT3_postLHE_nAOD16_{tstamp}'.format(tstamp=timestamp_tag)
 
 
 ########## Set up the lobster cfg ##########
@@ -22,23 +24,17 @@ master_label = 'EFT_testNAOD_crc_postLHE_{tstamp}'.format(tstamp=timestamp_tag)
 # Note: Should not have to modify things outside of this section, unless you want to:
 #    - Hardcode maod dirs to use
 
-PATH_TO_NAOD_CMSSW = "/afs/crc.nd.edu/user/k/kmohrman/CMSSW_Releases/CMSSW_10_6_19_patch2"
-#PATH_TO_NAOD_CMSSW = "CMSSW_10_6_19_patch2"
+PATH_TO_NAOD_CMSSW = "CMSSW_10_6_26"
 
 # Specfy the run setup
-#RUN_SETUP = 'full_production'
-#RUN_SETUP = 'mg_studies'
-RUN_SETUP = 'testing'
+RUN_SETUP = 'full_production'
 
 # Specify the UL year
-#UL_YEAR = 'UL16'
-#UL_YEAR = 'UL16APV'
-UL_YEAR = 'UL17'
-#UL_YEAR = 'UL18'
+UL_YEAR = 'UL16'
 
 # Name the output
-out_ver = "v1"   # The version index for the OUTPUT directory
-out_tag = "FullR2Studies/ValidationChecks/ttXJet_dim6TopMay20GST_run0StartPt_qCutScan_GEN_"
+out_ver = "v1patch_GCRC"   # The version index for the OUTPUT directoty
+out_tag = "ttgamma"
 prod_tag = "Round1/Batch1"
 
 # Append UL year to out tag
@@ -51,16 +47,7 @@ runs_whitelist    = []  # (i.e. MG starting points)
 
 # Specify the input directories. Note: The workflows in each of the input directories should all be uniquely named w.r.t each other
 input_dirs = [
-    os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL17/Round1/Batch1/postLHE_step/v2/"),
-    #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL17/Round1/Batch2/postLHE_step/v1/"),
-    #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL17/Round1/Batch3/postLHE_step/v1/"),
-    #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL17/Round1/Batch4/postLHE_step/v1/"),
-    #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL18/Round1/Batch1/postLHE_step/v1/"),
-    #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL18/Round1/Batch2/postLHE_step/v1/"),
-    #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL18/Round1/Batch3/postLHE_step/v1/"),
-    #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL18/Round1/Batch4/postLHE_step/v1/"),
-    #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL16/Round1/Batch1/postLHE_step/v1/"),
-    #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL16APV/Round1/Batch1/postLHE_step/v1/"),
+    os.path.join(input_path_full,"apiccine/FullProduction/FullR2/UL16/Round1/Batch1/postLHE_step/v1_GCRC"),
 ]
 
 
@@ -95,6 +82,7 @@ maod_dirs = [
 
 ########## Set up output based on run setup ##########
 
+'''
 if RUN_SETUP == 'mg_studies':
     # For MadGraph test studies
     output_path  = "/store/user/$USER/naodOnly_step/{tag}/{ver}".format(tag=out_tag,ver=out_ver)
@@ -114,27 +102,40 @@ elif RUN_SETUP == 'testing':
 else:
     print "Unknown run setup, {setup}".format(setup=RUN_SETUP)
     raise ValueError
+'''
 
+if RUN_SETUP == 'mg_studies':
+    # For MadGraph test studies
+    output_path  = "/store/user/$USER/nAOD_step/{tag}/{ver}".format(tag=out_tag,ver=out_ver)
+    workdir_path = "/tmpscratch/users/$USER/nAOD_step/{tag}/{ver}".format(tag=out_tag,ver=out_ver)
+    plotdir_path = "~/www/lobster/nAOD_step/{tag}/{ver}".format(tag=out_tag,ver=out_ver)
+elif RUN_SETUP == 'full_production':
+    # For Large MC production
+    output_path  = "/store/user/$USER/FullProduction/FullR2/{ul}/{tag}/nAOD_step/{ver}".format(ul=UL_YEAR,tag=prod_tag,ver=out_ver)
+    workdir_path = "/tmpscratch/users/$USER/FullProduction/FullR2/{ul}/{tag}/nAOD_step/{ver}".format(ul=UL_YEAR,tag=prod_tag,ver=out_ver)
+    plotdir_path = "~/www/lobster/FullProduction/FullR2/{ul}/{tag}/nAOD_step/{ver}".format(ul=UL_YEAR,tag=prod_tag,ver=out_ver)
+elif RUN_SETUP == 'testing':
+    # For test runs (where you do not intend to keep the output)
+    grp_tag = "lobster_{tstamp}".format(tstamp=timestamp_tag)
+    output_path  = "/store/user/$USER/nAOD_step/tests/{tag}/{ver}".format(tag=grp_tag,ver=out_ver)
+    workdir_path = "/tmpscratch/users/$USER/nAOD_step/tests/{tag}/{ver}".format(tag=grp_tag,ver=out_ver)
+    plotdir_path = "~/www/lobster/nAOD_step/tests/{tag}/{ver}".format(tag=grp_tag,ver=out_ver)
+else:
+    print "Unknown run setup, {setup}".format(setup=RUN_SETUP)
+    raise ValueError
 
 ########## Configure storage ##########
 
 storage = StorageConfiguration(
     input=[
-        "hdfs://eddie.crc.nd.edu:19000"  + input_path,
-        "root://deepthought.crc.nd.edu/" + input_path,  # Note the extra slash after the hostname!
-        "gsiftp://T3_US_NotreDame"       + input_path,
-        "srm://T3_US_NotreDame"          + input_path,
+        "root://hactar01.crc.nd.edu/" + input_path,
     ],
     output=[
-        "hdfs://eddie.crc.nd.edu:19000"  + output_path,
-        # ND is not in the XrootD redirector, thus hardcode server.
-        "root://deepthought.crc.nd.edu/" + output_path, # Note the extra slash after the hostname!
-        "gsiftp://T3_US_NotreDame"       + output_path,
-        "srm://T3_US_NotreDame"          + output_path,
-        "file:///hadoop"                 + output_path,
-    ],
-    disable_input_streaming=False,
+        "file:///cms/cephfs/data" + output_path,
+        "root://hactar01.crc.nd.edu/" + output_path,
+    ]
 )
+
 
 
 ########## Resources for each step ##########
@@ -195,7 +196,7 @@ for idx,maod_dir in enumerate(maod_dirs):
         print "\nWARNING: UL year selected, but moad dir path does not contain this UL year in it anywhere, are you sure you have the right path? Please double check."
         print "\tUL Year:" , UL_YEAR, "\n\tPath:" , maod_dir, "\nExiting...\n"
         raise Exception
-    print "\t[{0}/{1}] LHE Input: {dir}".format(idx+1,len(maod_dirs),dir=maod_dir)
+    print "\t[{0}/{1}] mAOD Input: {dir}".format(idx+1,len(maod_dirs),dir=maod_dir)
     head,tail = os.path.split(maod_dir)
     arr = tail.split('_')
     p,c,r = arr[2],arr[3],arr[4]
@@ -233,12 +234,12 @@ config = Config(
     storage=storage,
     workflows=wf,
     advanced=AdvancedOptions(
-        dashboard = False,
         bad_exit_codes=[127, 160],
         log_level=1,
         payload=10,
-        xrootd_servers=['ndcms.crc.nd.edu',
-                       'cmsxrootd.fnal.gov',
-                       'deepthought.crc.nd.edu']
+        osg_version='3.6',
+        threshold_for_failure=50,
+        threshold_for_skipping=50,
     )
 )
+

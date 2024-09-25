@@ -2,8 +2,15 @@
 # using: 
 # Revision: 1.19 
 # Source: /local/reps/CMSSW/CMSSW/Configuration/Applications/python/ConfigBuilder.py,v 
-# with command line options: Configuration/GenProduction/python/ttHJets_custom_ND-fragment.py --mc --eventcontent LHE --datatier LHE --conditions 106X_mcRun2_asymptotic_v13 --beamspot Realistic25ns13TeV2016Collision --step LHE --era Run2_2016 --fileout file:LHE-00000.root --python_filename UL16_LHE_cfg.py --no_exec
+# with command line options: Configuration/GenProduction/python/ttgamma_custom_ND-fragment.py --mc -n 4500 --eventcontent LHE --datatier LHE --conditions 106X_mcRun2_asymptotic_v13 --beamspot Realistic25ns13TeV2016Collision --step LHE --era Run2_2016 --fileout file:LHE-00000.root --python_filename UL16_LHE_cfg.py --no_exec --customise_commands=process.externalLHEProducer.args = cms.vstring("/afs/cern.ch/user/b/byates/CMSSW_10_6_26/src/ttgamma_dilep_ptj10_ttgamma_run0_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz")
 import FWCore.ParameterSet.Config as cms
+
+import os
+envOverride = {}
+print(os.environ)
+if 'HOME' not in os.environ:
+    envOverride['HOME'] = os.environ.get('PWD', "/")
+os.environ.update(envOverride)
 
 from Configuration.Eras.Era_Run2_2016_cff import Run2_2016
 
@@ -21,7 +28,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(1)
+    input = cms.untracked.int32(4500)
 )
 
 # Input source
@@ -33,7 +40,7 @@ process.options = cms.untracked.PSet(
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
-    annotation = cms.untracked.string('Configuration/GenProduction/python/ttHJets_custom_ND-fragment.py nevts:1'),
+    annotation = cms.untracked.string('Configuration/GenProduction/python/ttgamma_custom_ND-fragment.py nevts:4500'),
     name = cms.untracked.string('Applications'),
     version = cms.untracked.string('$Revision: 1.19 $')
 )
@@ -57,8 +64,8 @@ from Configuration.AlCa.GlobalTag import GlobalTag
 process.GlobalTag = GlobalTag(process.GlobalTag, '106X_mcRun2_asymptotic_v13', '')
 
 process.externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
-    args = cms.vstring('/cvmfs/cms.cern.ch/phys_generator/gridpacks/2017/13TeV/madgraph/V5_2.4.2/ttW012j_5f/v1/ttW012j_5f.tar.xz'),
-    nEvents = cms.untracked.uint32(1),
+    args = cms.vstring('/cvmfs/cms.cern.ch/phys_generator/gridpacks/UL/13TeV/madgraph/V5_2.6.5/ttGamma_Dilept_5f_ckm_LO/ttGamma_Dilept_5f_ckm_LO_slc7_amd64_gcc700_CMSSW_10_6_19_tarball.tar.xz'),
+    nEvents = cms.untracked.uint32(4500),
     numberOfParameters = cms.uint32(1),
     outputFile = cms.string('cmsgrid_final.lhe'),
     scriptName = cms.FileInPath('GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh')
@@ -78,6 +85,7 @@ associatePatAlgosToolsTask(process)
 
 # Customisation from command line
 
+process.externalLHEProducer.args = cms.vstring("/cms/cephfs/data/store/user/byates2/ttgamma_dilep_ttgamma_full_11_run0_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz")
 # Add early deletion of temporary data products to reduce peak memory need
 from Configuration.StandardSequences.earlyDeleteSettings_cff import customiseEarlyDelete
 process = customiseEarlyDelete(process)

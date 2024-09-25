@@ -8,6 +8,12 @@ import FWCore.ParameterSet.Config as cms
 from Configuration.Eras.Era_Run2_2017_cff import Run2_2017
 from Configuration.ProcessModifiers.run2_miniAOD_UL_cff import run2_miniAOD_UL
 
+import os
+envOverride = {}
+if 'HOME' not in os.environ:
+    envOverride['HOME'] = os.environ.get('PWD', "/")
+os.environ.update(envOverride)
+
 process = cms.Process('PAT',Run2_2017,run2_miniAOD_UL)
 
 # import of standard configurations

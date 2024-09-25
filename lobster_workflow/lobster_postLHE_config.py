@@ -13,8 +13,10 @@ MODIFIED_CFG_DIR = "python_cfgs/modified"
 
 timestamp_tag = datetime.datetime.now().strftime('%Y%m%d_%H%M')
 
-input_path = "/store/user/"
-input_path_full = "/hadoop" + input_path
+# /cms/cephfs/data/store/user/byates/ttgamma
+input_path = "/data/store/user/"
+#input_path_full = "/hadoop" + input_path
+input_path_full = "/cms/cephfs" + input_path
 
 #RUN_SETUP = 'local'
 #RUN_SETUP = 'full_production'

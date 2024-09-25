@@ -28,7 +28,8 @@ process.maxEvents = cms.untracked.PSet(
 # Input source
 process.source = cms.Source("PoolSource",
     dropDescendantsOfDroppedBranches = cms.untracked.bool(False),
-    fileNames = cms.untracked.vstring('file:DIGI-00000.root'),
+    fileNames = cms.untracked.vstring('file:/hadoop/store/user/byates2/postLHE_step/tests/lobster_20230802_1035/v2/digi_step_ttgamma_ExampleTag_run0/DIGI-00000_20122.root'),
+    #fileNames = cms.untracked.vstring('file:DIGI-00000.root'),
     inputCommands = cms.untracked.vstring('keep *', 
         'drop *_*_BMTF_*', 
         'drop *PixelFEDChannel*_*_*_*'),
