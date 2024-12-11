@@ -66,6 +66,11 @@ The `NanoAOD/plugins/GenWeightsTableProducer.cc` script requires `WCFit` and `WC
 cd CMSSW_10_6_26/src/ # Or whatever cd gets you into this directory
 git clone https://github.com/TopEFT/EFTGenReader.git
 ```
+Some of the unused code in this repo is not compatible with CMSSW 13x, so you can delete it:
+```
+rm -rf EFTGenReader/GenReader/
+rm -rf EFTGenReader/LHEReader/
+```
 Finally, we will also need the `NanoAODTools` (described [here](https://twiki.cern.ch/twiki/bin/viewauth/CMS/NanoAODTools#Quickly_make_plots_with_NanoAODT)) in order to get the script we need to merge non-EDM NAOD root files. Follow these steps to clone the repository inside of `PhysicsTools`:
 ```
 cd CMSSW_10_6_26/src
