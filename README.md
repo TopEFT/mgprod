@@ -43,7 +43,7 @@ These lobster configs feature particular run setups to try and better facilitate
 
 The NAOD step can be run as part of the "postLHE" step as described above, or as a standalone workflow. One befit of running it as a standalone workflow (that takes as input the MAOD files produced by the `postLHE` step) is that it makes it cleaner and more straightforward to rerun the NAOD step. The `lobster_NAOD_UL_config.py` config is designed to run on the MAOD output of the `lobster_postLHE_UL_config.py` step to produce UL NAOD. 
 
-The following steps are for producing NAOD v9 samples (with `CMSSW_10_6_26`), so please be sure that you are using v9 `cmsRun` configs.
+The following steps are for producing NAOD v9 samples (with `CMSSW_13_2_9`), so please be sure that you are using v9 `cmsRun` configs.
 
 To generate NAOD files that include the EFT weights, we cannot use a generic CMSSW release. We need to include the code that puts the weight information into the NAOD files, so execute the following commands to set up the appropriate CMSSW release and include the necessary packages. The last three commands (the `cherry-pick` commands) apply the necessary changes for handling EFT samples. Note, if you are producing NAOD v8 samples (with `CMSSW_10_6_19_patch2`), you can just run `git checkout eftfit/ULWCFit` instead of the `cherry-pick` commands.
 ```
@@ -58,9 +58,9 @@ git fetch eftfit
 git cherry-pick bb9ab6f1b1cf5e786437f3d2e482bf50404e0d50
 ```
 
-The `NanoAOD/plugins/GenWeightsTableProducer.cc` script requires `WCFit` and `WCPoint`, so clone the `EFTGenReader` inside of `CMSSW_10_6_26/src/`:
+The `NanoAOD/plugins/GenWeightsTableProducer.cc` script requires `WCFit` and `WCPoint`, so clone the `EFTGenReader` inside of `CMSSW_13_2_9/src/`:
 ```
-cd CMSSW_10_6_26/src/ # Or whatever cd gets you into this directory
+cd CMSSW_13_2_9/src/ # Or whatever cd gets you into this directory
 git clone https://github.com/TopEFT/EFTGenReader.git
 ```
 Some of the unused code in this repo is not compatible with CMSSW 13x, so you can delete it:
@@ -70,12 +70,12 @@ rm -rf EFTGenReader/LHEReader/
 ```
 Finally, we will also need the `NanoAODTools` (described [here](https://twiki.cern.ch/twiki/bin/viewauth/CMS/NanoAODTools#Quickly_make_plots_with_NanoAODT)) in order to get the script we need to merge non-EDM NAOD root files. Follow these steps to clone the repository inside of `PhysicsTools`:
 ```
-cd CMSSW_10_6_26/src
+cd CMSSW_13_2_9/src
 cmsenv
 git cms-init   #not really needed unless you later want to add some other cmssw stuff
 git clone https://github.com/cms-nanoAOD/nanoAOD-tools.git PhysicsTools/NanoAODTools
 scram b
 ```
-At this point, you should have all of the necessary code in order to produce the EFT NAOD samples. Before moving on, do a `scram b` in the `CMSSW_10_6_26/src` to make sure everyting is compiled. 
+At this point, you should have all of the necessary code in order to produce the EFT NAOD samples. Before moving on, do a `scram b` in the `CMSSW_13_2_9/src` to make sure everyting is compiled. 
 
-Finally, edit the `PATH_TO_NAOD_CMSSW` global variable in your lobster config to point to your new `CMSSW_10_6_26` directory.
+Finally, edit the `PATH_TO_NAOD_CMSSW` global variable in your lobster config to point to your new `CMSSW_13_2_9` directory.
