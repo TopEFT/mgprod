@@ -25,7 +25,7 @@ SANDBOX    = 'test_1'
 def main(model,limits,proc_card):    
     home_dir = os.getcwd()
 
-    events  = 5000
+    events  = 50
     cores   = 1
     num_rwgt_pts = 3
 
@@ -54,25 +54,27 @@ def main(model,limits,proc_card):
     os.chdir(work_dir)
     print "Generating %d events..." % (events)
     runProcess(['./bin/generate_events','-f'])
+    print "Done with %d events" % (events)
+    print "Exit"
 
-    #make_gridpack(os.path.join(home_dir,SANDBOX),work_dir)
+    make_gridpack(os.path.join(home_dir,SANDBOX),work_dir)
 
 if __name__ == "__main__":
-    model      = HEL_MODEL
-    proc_card  = 'process_cards/ttZ.dat'
-    target     = 'cuW'
-    starting_pts = [0.0]
-    limits     = {
-        'cuW': [0.0,-0.05,0.05],
-        #'cuB': [0.0,-0.01,0.01],
-    }
-    
-    #model      = TOP_MODEL
-    #proc_card  = 'process_cards/dim6_ttZ.dat'
-    #target     = 'ctG'
-    ##starting_pts = [-2.0,-1.0,0.0,1.0,2.0]
+    #model      = HEL_MODEL
+    #proc_card  = 'process_cards/ttZ.dat'
+    #target     = 'cuW'
     #starting_pts = [0.0]
-    #limits     = {'ctG': [0.0,-2.0,2.0]}
+    #limits     = {
+    #    'cuW': [0.0,-0.05,0.05],
+    #    #'cuB': [0.0,-0.01,0.01],
+    #}
+    
+    model      = TOP_MODEL
+    proc_card  = 'process_cards/ttgamma.dat'
+    target     = 'ctG'
+    #starting_pts = [-2.0,-1.0,0.0,1.0,2.0]
+    starting_pts = [0.0]
+    limits     = {'ctG': [0.0,-2.0,2.0]}
 
     home_dir = os.getcwd()
     for start_pt in starting_pts:

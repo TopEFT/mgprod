@@ -9,23 +9,24 @@ from lobster.core import AdvancedOptions, Category, Config, MultiProductionDatas
 
 #sys.path.append(os.getcwd())
 #sys.path.append('/afs/crc.nd.edu/user/a/awightma/Public/git_repos/mgprod/lobster_workflow')
-from helpers.utils import regex_match
+#from helpers.utils import regex_match
 
 timestamp_tag = datetime.datetime.now().strftime('%Y%m%d_%H%M')
 
-events_per_gridpack = 7.5e6
-#events_per_gridpack = 15e6
+#events_per_gridpack = 7.5e6
+#events_per_gridpack = 5e4
+events_per_gridpack = 15e6
 #events_per_gridpack = 5e6
 #events_per_gridpack = 100e3
+#events_per_gridpack = 1e6
 events_per_lumi = 500
 
-#RUN_SETUP = 'local'
 RUN_SETUP = 'full_production'
 #RUN_SETUP = 'mg_studies'
 #RUN_SETUP = 'lobster_test'
 
-#UL_YEAR = 'UL16'
-UL_YEAR = 'UL16APV'
+UL_YEAR = 'UL16'
+#UL_YEAR = 'UL16APV'
 #UL_YEAR = 'UL17'
 #UL_YEAR = 'UL18'
 if ((UL_YEAR != 'UL16') and (UL_YEAR != 'UL16APV') and (UL_YEAR != 'UL17') and (UL_YEAR != 'UL18')):
@@ -34,7 +35,10 @@ if ((UL_YEAR != 'UL16') and (UL_YEAR != 'UL16APV') and (UL_YEAR != 'UL17') and (
 version = "v1"
 #grp_tag = "FullR2Studies/PreliminaryStudies/tHq4f_testOldGenprod-HanV4"
 #grp_tag = "FullR2Studies/ULChecks/ttH-ttHJet_dim6TopMay20GST_JustctGctp-check-dim6syntaxes_"
-grp_tag = "FullR2Studies/ValidationChecks/ttbarJet_dim6TopMay20GST_1dAxisScans-2heavy-2heavy2light_"
+#grp_tag = "FullR2Studies/ValidationChecks/ttbarJet_dim6TopMay20GST_1dAxisScans-2heavy-2heavy2light_"
+grp_tag = 'TTGamma_DiLep_private'
+#grp_tag = 'TTGamma_SemiLep_private'
+#grp_tag = 'TTGamma_private'
 #grp_tag = "ForPhenoJhepReviewStudies/ttZJet_sampleForDoubleCheckingQcut_dim6TopMay20GST_"
 
 prod_tag = "Round1/Batch1"
@@ -57,6 +61,7 @@ master_label = 'EFT_T3_{tstamp}'.format(tstamp=timestamp_tag)
 #if RUN_SETUP == 'local':
 #    # Overwrite the input path to point to a local AFS file directory with the desired gridpacks
 #    input_path      = "/afs/crc.nd.edu/user/a/awightma/Public/git_repos/mgprod/lobster_workflow/local_gridpacks/"
+#    input_path      = "/afs/crc.nd.edu/user/b/byates2/genproductions/bin/MadGraph5_aMCatNLO/"
 #    input_path_full = input_path
 #    test_tag = "lobster_{tstamp}".format(tstamp=timestamp_tag)
 #    output_path  = "/store/user/$USER/tests/{tag}".format(tag=test_tag)
@@ -309,6 +314,11 @@ gridpack_list = [
     #"kmohrman/gridpack_scans/ForPhenoJhepReviewStudies/ttWJet_cbWCheck1dForPhenodim6TopMay20GSTAxisScan_run0_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz",
     #"kmohrman/gridpack_scans/ForPhenoJhepReviewStudies/ttWJet_cptbCheck1dForPhenodim6TopMay20GSTAxisScan_run2_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz",
     #"kmohrman/gridpack_scans/ForPhenoJhepReviewStudies/ttWJet_cbWCheck1dForPhenodim6TopMay20GSTAxisScan_run1_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz",
+    'byates2/ttgamma_dilep_ttgamma_full_11_run0_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz',
+    #'byates2/ttgamma_dilep_ptj10_ttgamma_run0_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz',
+    #'byates2/ttgamma_dilep_ttgamma_run1_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz',
+    #'byates2/ttgamma_semilep22_ttgamma_run0_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz',
+    #'byates2/ttgamma_ctWttgammaAxisScan_run0_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz',
 ]
 
 FullR2_gridpack_list = [
@@ -320,7 +330,7 @@ FullR2_gridpack_list = [
     "kmohrman/gridpack_scans/FullR2Studies/FromSergio/tttt_FourtopsMay3v1_run0_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz",
 ]
 
-if RUN_SETUP == 'full_production':
+if RUN_SETUP == 'full_production' and False:
     gridpack_list = FullR2_gridpack_list
 
 ### This block is usually comented, use for specifying multiple gridpacks:
@@ -386,6 +396,7 @@ event_multiplier = {
     'ttllNuNuJetNoHiggs': 3.5,
     'ttZJet': 3.5,
     'ttbarJet':4.1,
+    'ttgamma':4.5,
 }
 
 cat_dict = {}
@@ -430,7 +441,7 @@ for idx,gridpack in enumerate(gridpack_list):
     if (UL_YEAR == "NONE"):
         rel = 'CMSSW_9_3_1'
     else:
-        rel = 'CMSSW_10_6_19_patch3'
+        rel = 'CMSSW_10_6_26'
     lhe = Workflow(
         label=label,
         command='cmsRun {cfg}'.format(cfg=wf_fragments['lhe']),

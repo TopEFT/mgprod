@@ -40,6 +40,7 @@ process.options = cms.untracked.PSet(
 process.configurationMetadata = cms.untracked.PSet(
     annotation = cms.untracked.string('step1 nevts:1'),
     name = cms.untracked.string('Applications'),
+    verbose = cms.untracked.bool(True),
     version = cms.untracked.string('$Revision: 1.19 $')
 )
 

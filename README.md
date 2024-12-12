@@ -47,9 +47,8 @@ The following steps are for producing NAOD v9 samples (with `CMSSW_10_6_26`), so
 
 To generate NAOD files that include the EFT weights, we cannot use a generic CMSSW release. We need to include the code that puts the weight information into the NAOD files, so execute the following commands to set up the appropriate CMSSW release and include the necessary packages. The last three commands (the `cherry-pick` commands) apply the necessary changes for handling EFT samples. Note, if you are producing NAOD v8 samples (with `CMSSW_10_6_19_patch2`), you can just run `git checkout eftfit/ULWCFit` instead of the `cherry-pick` commands.
 ```
-cmsrel CMSSW_10_6_26
-cd CMSSW_10_6_26/src/
-export SCRAM_ARCH=slc7_amd64_gcc700
+cmsrel CMSSW_13_2_9
+cd CMSSW_13_2_9/src/
 cmsenv
 
 git cms-addpkg PhysicsTools/NanoAOD

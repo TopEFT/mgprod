@@ -22,7 +22,8 @@ master_label = 'EFT_testNAOD_crc_postLHE_{tstamp}'.format(tstamp=timestamp_tag)
 # Note: Should not have to modify things outside of this section, unless you want to:
 #    - Hardcode maod dirs to use
 
-PATH_TO_NAOD_CMSSW = "/afs/crc.nd.edu/user/k/kmohrman/CMSSW_Releases/CMSSW_10_6_19_patch2"
+PATH_TO_NAOD_CMSSW = "/afs/crc.nd.edu/user/k/kmohrman/CMSSW_Releases/CMSSW_10_6_26"
+#PATH_TO_NAOD_CMSSW = "/afs/crc.nd.edu/user/k/kmohrman/CMSSW_Releases/CMSSW_10_6_19_patch2"
 #PATH_TO_NAOD_CMSSW = "CMSSW_10_6_19_patch2"
 
 # Specfy the run setup
@@ -32,12 +33,12 @@ RUN_SETUP = 'testing'
 
 # Specify the UL year
 #UL_YEAR = 'UL16'
-#UL_YEAR = 'UL16APV'
-UL_YEAR = 'UL17'
+UL_YEAR = 'UL16APV'
+#UL_YEAR = 'UL17'
 #UL_YEAR = 'UL18'
 
 # Name the output
-out_ver = "v1"   # The version index for the OUTPUT directory
+out_ver = "v2"   # The version index for the OUTPUT directory
 out_tag = "FullR2Studies/ValidationChecks/ttXJet_dim6TopMay20GST_run0StartPt_qCutScan_GEN_"
 prod_tag = "Round1/Batch1"
 
@@ -51,7 +52,7 @@ runs_whitelist    = []  # (i.e. MG starting points)
 
 # Specify the input directories. Note: The workflows in each of the input directories should all be uniquely named w.r.t each other
 input_dirs = [
-    os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL17/Round1/Batch1/postLHE_step/v2/"),
+    #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL17/Round1/Batch1/postLHE_step/v2/"),
     #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL17/Round1/Batch2/postLHE_step/v1/"),
     #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL17/Round1/Batch3/postLHE_step/v1/"),
     #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL17/Round1/Batch4/postLHE_step/v1/"),
@@ -60,7 +61,9 @@ input_dirs = [
     #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL18/Round1/Batch3/postLHE_step/v1/"),
     #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL18/Round1/Batch4/postLHE_step/v1/"),
     #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL16/Round1/Batch1/postLHE_step/v1/"),
-    #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL16APV/Round1/Batch1/postLHE_step/v1/"),
+    os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL16APV/Round1/Batch1/postLHE_step/v1/"),
+
+    #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2_qCutStudy/UL17/Round1/Batch2/postLHE_step/v1/"),
 ]
 
 

@@ -28,5 +28,5 @@ def run_process(inputs,verbose=True,indent=0):
             break
         if l:
             stdout.append(l.strip())
-            if verbose: print indent_str+l.strip()
+            if verbose: print(indent_str+l.strip())
     return stdout

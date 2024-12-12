@@ -21,7 +21,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(1)
+    input = cms.untracked.int32(-1)
 )
 
 # Input source
@@ -33,7 +33,7 @@ process.options = cms.untracked.PSet(
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
-    annotation = cms.untracked.string('Configuration/GenProduction/python/ttHJets_custom_ND-fragment.py nevts:1'),
+    annotation = cms.untracked.string('Configuration/GenProduction/python/ttgamma_custom_ND-fragment.py nevts:100'),
     name = cms.untracked.string('Applications'),
     version = cms.untracked.string('$Revision: 1.19 $')
 )
@@ -57,8 +57,11 @@ from Configuration.AlCa.GlobalTag import GlobalTag
 process.GlobalTag = GlobalTag(process.GlobalTag, '106X_mcRun2_asymptotic_v13', '')
 
 process.externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
-    args = cms.vstring('/cvmfs/cms.cern.ch/phys_generator/gridpacks/2017/13TeV/madgraph/V5_2.4.2/ttW012j_5f/v1/ttW012j_5f.tar.xz'),
-    nEvents = cms.untracked.uint32(1),
+    #args = cms.vstring('/scratch365/byates2/MG/ttgamma_ctGExampleTagAxisScan_run0_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz'),
+    args = cms.vstring('/hadoop/store/user/byates2/ttgamma_dilep_ptj10_ttgamma_run0_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz'),
+    #args = cms.vstring('/afs/crc.nd.edu/user/b/byates2/genproductions/bin/MadGraph5_aMCatNLO/ttgamma_ExampleTag_run0_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz'),
+    #args = cms.vstring('/cvmfs/cms.cern.ch/phys_generator/gridpacks/2017/13TeV/madgraph/V5_2.4.2/ttW012j_5f/v1/ttW012j_5f.tar.xz'),
+    nEvents = cms.untracked.uint32(100),
     numberOfParameters = cms.uint32(1),
     outputFile = cms.string('cmsgrid_final.lhe'),
     scriptName = cms.FileInPath('GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh')

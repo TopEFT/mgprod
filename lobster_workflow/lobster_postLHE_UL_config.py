@@ -12,7 +12,7 @@ from helpers.utils import regex_match, run_process
 MODIFIED_CFG_DIR = "python_cfgs/modified"
 timestamp_tag = datetime.datetime.now().strftime('%Y%m%d_%H%M')
 input_path = "/store/user/"
-input_path_full = "/hadoop" + input_path
+input_path_full = "/cms/cephfs/data/" + input_path
 
 #master_label = 'EFT_CRC_b4_postLHE_crc_{tstamp}'.format(tstamp=timestamp_tag)
 master_label = 'EFT_CRC_postLHE_crc_{tstamp}'.format(tstamp=timestamp_tag)
@@ -28,26 +28,32 @@ master_label = 'EFT_CRC_postLHE_crc_{tstamp}'.format(tstamp=timestamp_tag)
 
 # Specify what kind of output to make
 #STEPS = 'throughGEN'
-STEPS = 'throughMAOD'
-#STEPS = 'throughNAOD'
+#STEPS = 'throughMAOD'
+STEPS = 'throughNAOD'
+#STEPS = 'onlyNAOD'
 
-PATH_TO_NAOD_CMSSW = "/afs/crc.nd.edu/user/k/kmohrman/CMSSW_Releases/CMSSW_10_6_19_patch2"
+PATH_TO_NAOD_CMSSW = "/afs/crc.nd.edu/user/b/byates2/mgprod/lobster_workflow/CMSSW_10_6_26"
+#PATH_TO_NAOD_CMSSW = "/afs/crc.nd.edu/user/b/byates2/mgprod/lobster_workflow/CMSSW_10_6_19_patch2"
+#PATH_TO_NAOD_CMSSW = "/afs/crc.nd.edu/user/k/kmohrman/CMSSW_Releases/CMSSW_10_6_19_patch2"
+#PATH_TO_NAOD_CMSSW = "/afs/crc.nd.edu/user/k/kmohrman/CMSSW_Releases/CMSSW_10_6_26/"
 
 # Specfy the run setup
-#RUN_SETUP = 'full_production'
+RUN_SETUP = 'full_production'
 #RUN_SETUP = 'mg_studies'
-RUN_SETUP = 'testing'
+#RUN_SETUP = 'testing'
 
 # Specify the UL year
-#UL_YEAR = 'UL16'
+UL_YEAR = 'UL16'
 #UL_YEAR = 'UL16APV'
-UL_YEAR = 'UL17'
+#UL_YEAR = 'UL17'
 #UL_YEAR = 'UL18'
 
 # Name the output
-out_ver = "v2"   # The version index for the OUTPUT directory
+out_ver = "v1"   # The version index for the OUTPUT directory
 #out_tag = "FullR2Studies/ULChecks/ttXJet-tXq_testUpdateGenproddim6TopMay20GST_GEN_ULCheck"
-out_tag = "FullR2Studies/ValidationChecks/ttXJet_dim6TopMay20GST_run0StartPt_qCutScan_GEN_"
+#out_tag = "FullR2Studies/ValidationChecks/ttXJet_dim6TopMay20GST_run0StartPt_qCutScan_GEN_"
+#out_tag = "FullR2Studies/ValidationChecks/ttbarJet_dim6TopMay20GST_1dAxisScans-2heavy-2heavy2light_"
+out_tag = "ttgamma"
 #out_tag = "ForPhenoJhepReviewStudies/ttZJet_sampleForDoubleCheckingQcut_dim6TopMay20GST_GEN_"
 prod_tag = "Round1/Batch1"
 
@@ -66,7 +72,7 @@ input_dirs = [
     #os.path.join(input_path_full,"kmohrman/LHE_step/FullR2Studies/ULChecks/ttXJet-tXq_testUpdateGenproddim6TopMay20GST_ULCheck-UL16APV/v1"),
     #os.path.join(input_path_full,"kmohrman/LHE_step/FullR2Studies/ULChecks/ttXJet-tXq_testUpdateGenproddim6TopMay20GST_ULCheck-UL17/v1"),
     #os.path.join(input_path_full,"kmohrman/LHE_step/FullR2Studies/ULChecks/ttXJet-tXq_testUpdateGenproddim6TopMay20GST_ULCheck-UL18/v1"),
-    os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL17/Round1/Batch1/LHE_step/v1/"),
+    #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL17/Round1/Batch1/LHE_step/v1/"),
     #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL17/Round1/Batch2/LHE_step/v1/"),
     #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL17/Round1/Batch3/LHE_step/v1/"),
     #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL17/Round1/Batch4/LHE_step/v1/"),
@@ -76,6 +82,13 @@ input_dirs = [
     #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL18/Round1/Batch4/LHE_step/v1/"),
     #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL16/Round1/Batch1/LHE_step/v1/"),
     #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2/UL16APV/Round1/Batch1/LHE_step/v1"),
+
+    #os.path.join(input_path_full,"byates2/LHE_step/TTGamma_DiLep_privateUL16APV/v1/"),
+    #os.path.join(input_path_full,"byates/ttgamma/LHE/2016/crab_ttgamma_LHE/240522_161408/"),
+    #os.path.join(input_path_full,"kmohrman/FullProduction/FullR2_qCutStudy/UL17/Round1/Batch2/LHE_step/v1"),
+    os.path.join(input_path_full,"byates/ttgamma/LHE/2016/crab_ttgamma_LHE/240522_161408/"),
+    #os.path.join(input_path_full,"byates2/FullProduction/FullR2/UL16/Round1/Batch1/LHE_step/v1/"),
+    #os.path.join(input_path_full,"byates2/LHE_step/FullR2Studies/ValidationChecks/ttbarJet_dim6TopMay20GST_1dAxisScans-2heavy-2heavy2light_UL16APV/v1/"),
 ]
 
 
@@ -87,8 +100,11 @@ for path in input_dirs:
     for fd in os.listdir(path):
         if fd.find('lhe_step_') < 0:
             continue
+        print(fd)
         arr = fd.split('_')
+        print(arr)
         p,c,r = arr[2],arr[3],arr[4]
+        print(p,c,r)
         if len(regex_match([p],process_whitelist)) == 0:
             continue
         elif len(regex_match([c],coeff_whitelist)) == 0:
@@ -96,6 +112,7 @@ for path in input_dirs:
         elif len(regex_match([r],runs_whitelist)) == 0:
             continue
         relpath = os.path.relpath(path,input_path_full)
+        print(relpath)
         lhe_dirs.append(os.path.join(relpath,fd))
 
 '''
@@ -142,17 +159,17 @@ else:
 storage = StorageConfiguration(
     input=[
         "hdfs://eddie.crc.nd.edu:19000"  + input_path,
-        "root://deepthought.crc.nd.edu/" + input_path,  # Note the extra slash after the hostname!
+        "root://hactar01.crc.nd.edu/" + output_path, # Note the extra slash after the hostname!
         "gsiftp://T3_US_NotreDame"       + input_path,
         "srm://T3_US_NotreDame"          + input_path,
     ],
     output=[
         "hdfs://eddie.crc.nd.edu:19000"  + output_path,
         # ND is not in the XrootD redirector, thus hardcode server.
-        "root://deepthought.crc.nd.edu/" + output_path, # Note the extra slash after the hostname!
+        "root://hactar01.crc.nd.edu/" + output_path, # Note the extra slash after the hostname!
         "gsiftp://T3_US_NotreDame"       + output_path,
         "srm://T3_US_NotreDame"          + output_path,
-        "file:///hadoop"                 + output_path,
+        "file:///cms/cephfs/data/"      + output_path,
     ],
     disable_input_streaming=False,
 )
@@ -169,7 +186,7 @@ gen_resources = Category(
     name='gen',
     cores=1,
     memory=2000,
-    disk=1000,
+    disk=3000,
     tasks_min=12,
     tasks_max=3000,
     mode='fixed'
@@ -286,6 +303,9 @@ gen_ul_cfg_map = {
         },
         'tttt' : {
             'gen': os.path.join(ul_base,'UL16_GEN_ttlnu_cfg.py'),
+        },
+        'ttgamma' : {
+            'gen': os.path.join(ul_base,'UL16_GEN_ttgamma_cfg.py'),
         }
     },
     'UL16APV' : {
@@ -306,6 +326,9 @@ gen_ul_cfg_map = {
         },
         'tttt' : {
             'gen': os.path.join(ul_base,'UL16APV_GEN_ttlnu_cfg.py'),
+        },
+        'ttgamma' : {
+            'gen': os.path.join(ul_base,'UL16APV_GEN_ttgamma_cfg.py'),
         }
     },
     'UL17' : {
@@ -365,7 +388,7 @@ rel_map = {
         'hlt' : 'CMSSW_8_0_33_UL',
         'reco': 'CMSSW_10_6_17_patch1',
         'maod': 'CMSSW_10_6_20',
-        'naod': 'PATH_TO_NAOD_CMSSW',
+        'naod': PATH_TO_NAOD_CMSSW,
     },
     'UL16APV' : {
         'gen' : 'CMSSW_10_6_19_patch3',
@@ -374,7 +397,7 @@ rel_map = {
         'hlt' : 'CMSSW_8_0_33_UL',
         'reco': 'CMSSW_10_6_17_patch1',
         'maod': 'CMSSW_10_6_20',
-        'naod': 'PATH_TO_NAOD_CMSSW',
+        'naod': PATH_TO_NAOD_CMSSW,
     },
     'UL17' : {
         'gen' : 'CMSSW_10_6_19_patch3',
@@ -383,7 +406,7 @@ rel_map = {
         'hlt' : 'CMSSW_9_4_14_UL_patch1',
         'reco': 'CMSSW_10_6_17_patch1',
         'maod': 'CMSSW_10_6_20',
-        'naod': 'PATH_TO_NAOD_CMSSW',
+        'naod': PATH_TO_NAOD_CMSSW,
     },
     'UL18' : {
         'gen' : 'CMSSW_10_6_19_patch3',
@@ -392,7 +415,7 @@ rel_map = {
         'hlt' : 'CMSSW_10_2_16_UL',
         'reco': 'CMSSW_10_6_17_patch1',
         'maod': 'CMSSW_10_6_20',
-        'naod': 'PATH_TO_NAOD_CMSSW',
+        'naod': PATH_TO_NAOD_CMSSW,
     },
 
 }
@@ -403,7 +426,10 @@ rel_map = {
 gs_mods_dict = {}
 gs_mods_dict["base"] = {}
 gs_mods_dict["base"]["base"] = []
+gs_mods_dict["ttgamma"] = {}
+gs_mods_dict["ttgamma"]["base"] = []
 '''
+gs_mods_dict["ttgamma"]['qCut20'] = ['s|JetMatching:qCut = 20.|JetMatching:qCut = 20.|g']
 # Example of q cut variation
 gs_mods_dict["ttHJet"] = {}
 gs_mods_dict["ttHJet"]['qCut15'] = ['s|JetMatching:qCut = 20.|JetMatching:qCut = 15.|g']
@@ -436,7 +462,7 @@ wf = []
 print "Generating workflows:"
 for idx,lhe_dir in enumerate(lhe_dirs):
     # Raise exception if trying to make UL sample but the UL year is not in the path anywhere
-    if ( (UL_YEAR not in lhe_dir) or ((UL_YEAR == "UL16") and ("APV" in lhe_dir)) ):
+    if ( (UL_YEAR not in lhe_dir) or ((UL_YEAR == "UL16") and ("APV" in lhe_dir)) ) and False:
         print "\nWARNING: UL year selected, but lhe dir path does not contain this UL year in it anywhere, are you sure you have the right path? Please double check."
         print "\tUL Year:" , UL_YEAR, "\n\tPath:" , lhe_dir, "\nExiting...\n"
         raise Exception
@@ -461,6 +487,8 @@ for idx,lhe_dir in enumerate(lhe_dirs):
                     template_loc = fragment_map["tllq4fNoSchanWNoHiggs0p"][step]
                 elif (p=="ttWJet" or p=="ttZJet" or p=="ttbarJet"):
                     template_loc = fragment_map["ttlnuJet"][step]
+                elif (p=="ttgamma"):
+                    template_loc = fragment_map["ttgamma"][step]
                 else:
                     template_loc = fragment_map[p][step]
             else:
@@ -537,7 +565,7 @@ for idx,lhe_dir in enumerate(lhe_dirs):
             merge_size=-1, # Don't merge files we don't plan to keep
             cleanup_input=True,
             #cleanup_input=False,
-            outputs=['HLT-00000'],
+            outputs=['HLT-00000.root'],
             dataset=ParentDataset(
                 parent=digi,
                 units_per_task=1
@@ -555,7 +583,7 @@ for idx,lhe_dir in enumerate(lhe_dirs):
             outputs=['RECO-00000.root'],
             dataset=ParentDataset(
                 parent=hlt,
-                units_per_task=2
+                units_per_task=1
             ),
             category=reco_resources
         )
@@ -564,14 +592,14 @@ for idx,lhe_dir in enumerate(lhe_dirs):
             label='mAOD_step_{tag}'.format(tag=label_tag),
             command='cmsRun {cfg}'.format(cfg=wf_fragments['maod']),
             sandbox=cmssw.Sandbox(release=rel_map[UL_YEAR]['maod']),
-            merge_size='256M',
+            #merge_size='256M',
             #merge_size=-1,
             cleanup_input=True,
             #cleanup_input=False,
             outputs=['MAOD-00000.root'],
             dataset=ParentDataset(
                 parent=reco,
-                units_per_task=3
+                units_per_task=1
             ),
             category=maod_resources
         )
@@ -587,7 +615,7 @@ for idx,lhe_dir in enumerate(lhe_dirs):
             outputs=['NAOD-00000.root'],
             dataset=ParentDataset(
                 parent=maod,
-                units_per_task=3
+                units_per_task=1
             ),
             category=naod_resources
         )
@@ -616,6 +644,6 @@ config = Config(
         payload=10,
         xrootd_servers=['ndcms.crc.nd.edu',
                        'cmsxrootd.fnal.gov',
-                       'deepthought.crc.nd.edu']
+                       'hactar01.crc.nd.edu']
     )
 )
