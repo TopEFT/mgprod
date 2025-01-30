@@ -2,19 +2,19 @@
 # using: 
 # Revision: 1.19 
 # Source: /local/reps/CMSSW/CMSSW/Configuration/Applications/python/ConfigBuilder.py,v 
-# with command line options: Configuration/GenProduction/python/ttgamma_custom_ND-fragment.py --python_filename UL16_NAOD_cfg.py --eventcontent NANOAODSIM --customise Configuration/DataProcessing/Utils.addMonitoring --datatier NANOAODSIM --filein file:MAOD-00000.root --fileout file:NAOD-00000.root --conditions 106X_mcRun2_asymptotic_v17 --step NANO --geometry DB:Extended --era Run2_2016,run2_nanoAOD_106Xv2 --no_exec --mc -n 4500
+# with command line options: step1 --mc --eventcontent NANOAODSIM --datatier NANOAODSIM --step NANO --era Run2_2016,run2_nanoAOD_106Xv2 --conditions 106X_mcRun2_asymptotic_v17 --filein file:MAOD-00000.root --fileout file:NAOD-00000.root --python_filename UL16_NAOD_cfg.py --no_exec
 import FWCore.ParameterSet.Config as cms
 
 from Configuration.Eras.Era_Run2_2016_cff import Run2_2016
 from Configuration.Eras.Modifier_run2_nanoAOD_106Xv2_cff import run2_nanoAOD_106Xv2
+
+process = cms.Process('NANO',Run2_2016,run2_nanoAOD_106Xv2)
 
 import os
 envOverride = {}
 if 'HOME' not in os.environ:
     envOverride['HOME'] = os.environ.get('PWD', "/")
 os.environ.update(envOverride)
-
-process = cms.Process('NANO',Run2_2016,run2_nanoAOD_106Xv2)
 
 # import of standard configurations
 process.load('Configuration.StandardSequences.Services_cff')
@@ -29,7 +29,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(-1)
+    input = cms.untracked.int32(1)
 )
 
 # Input source
@@ -44,7 +44,7 @@ process.options = cms.untracked.PSet(
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
-    annotation = cms.untracked.string('Configuration/GenProduction/python/ttgamma_custom_ND-fragment.py nevts:-1'),
+    annotation = cms.untracked.string('step1 nevts:1'),
     name = cms.untracked.string('Applications'),
     version = cms.untracked.string('$Revision: 1.19 $')
 )

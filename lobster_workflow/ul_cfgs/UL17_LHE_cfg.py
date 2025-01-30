@@ -57,7 +57,7 @@ from Configuration.AlCa.GlobalTag import GlobalTag
 process.GlobalTag = GlobalTag(process.GlobalTag, '106X_mc2017_realistic_v6', '')
 
 process.externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
-    args = cms.vstring('/cms/cephfs/data/store/user/byates2/ttgamma_dilep_ttgamma_full_11_run0_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz')
+    args = cms.vstring('/cms/cephfs/data/store/user/byates2/ttgamma_dilep_ttgamma_full_11_run0_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz'),
     nEvents = cms.untracked.uint32(1),
     numberOfParameters = cms.uint32(1),
     outputFile = cms.string('cmsgrid_final.lhe'),

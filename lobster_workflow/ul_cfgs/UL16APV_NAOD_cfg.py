@@ -8,13 +8,13 @@ import FWCore.ParameterSet.Config as cms
 from Configuration.Eras.Era_Run2_2016_HIPM_cff import Run2_2016_HIPM
 from Configuration.Eras.Modifier_run2_nanoAOD_106Xv2_cff import run2_nanoAOD_106Xv2
 
+process = cms.Process('NANO',Run2_2016_HIPM,run2_nanoAOD_106Xv2)
+
 import os
 envOverride = {}
 if 'HOME' not in os.environ:
     envOverride['HOME'] = os.environ.get('PWD', "/")
 os.environ.update(envOverride)
-
-process = cms.Process('NANO',Run2_2016_HIPM,run2_nanoAOD_106Xv2)
 
 # import of standard configurations
 process.load('Configuration.StandardSequences.Services_cff')
