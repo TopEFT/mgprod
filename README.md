@@ -55,6 +55,9 @@ git cms-addpkg PhysicsTools/NanoAOD
 cd PhysicsTools/NanoAOD/
 git remote add eftfit git@github.com:bryates/cmssw.git
 git fetch eftfit
+git cherry-pick 869fdb3011b1d864d3d85090ee4e22ea3fdb32f9
+git cherry-pick 493da24362983cb78b0e9ad75f3cc6d824b54f5e
+git cherry-pick 10e20e3b235870519b870e3c3cfb13f9b23148e2
 git cherry-pick bb9ab6f1b1cf5e786437f3d2e482bf50404e0d50
 ```
 
