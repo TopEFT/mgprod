@@ -4,9 +4,12 @@
 
 # See: https://twiki.cern.ch/twiki/bin/view/CMS/PdmVRun3Analysis#Recipes_for_Run3Summer22_and_Run
 
+MGPROD=$(git --rev-parse --show-toplevel)/lobster_workflow
+
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 
 setup_rel(){
+    cd $MGPROD
     printf "\nSet up CMSSW release for $1...\n"
     if [ -r $1/src ] ; then
         echo release $1 already exists
@@ -16,13 +19,14 @@ setup_rel(){
     cd $1/src
     eval `scram runtime -sh`
 
-    FDIR=../../../fragments # Dir of fragments, relative to CMSSW/src
+    FDIR=$MGPROD/fragments # Dir of fragments, relative to CMSSW/src
 
     mkdir -p ./Configuration/GenProduction/python/ # Make a directory for the fragment if it does not already exist
     cp $FDIR/$2 ./Configuration/GenProduction/python/ # Copy the fragment to the  directory
 
     scram b
-    cd ../..
+
+    cd $MGPROD/run3_cfgs
 
     printf "CMSSW base: $CMSSW_BASE\n"
 }
