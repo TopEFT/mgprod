@@ -4,10 +4,8 @@
 
 # See: https://twiki.cern.ch/twiki/bin/view/CMS/PdmVRun3Analysis#Recipes_for_Run3Summer22_and_Run
 
-# export SCRAM_ARCH=export SCRAM_ARCH=el8_amd64_gcc11
-# export SCRAM_ARCH=export SCRAM_ARCH=el9_amd64_gcc11
 source /cvmfs/cms.cern.ch/cmsset_default.sh
-export SCRAM_ARCH=el9_amd64_gcc11
+export SCRAM_ARCH=el8_amd64_gcc11
 
 setup_rel(){
     printf "\nSet up CMSSW release for $1...\n"
@@ -74,13 +72,13 @@ setup_rel(){
     FIN=SIM-00000.root
     FOUT=DIGI-00000.root
     CFGNAME=2023_DIGI_cfg.py
-    cmsDriver.py step1 --mc --eventcontent PREMIXRAW --datatier GEN-SIM-RAW --conditions $CONDITIONS --step DIGI,DATAMIX,L1,DIGI2RAW,HLT:2022v12 --procModifiers premix_stage2,siPixelQualityRawToDigi --nThreads 4 --geometry DB:Extended --datamix PreMix --era $ERA --filein file:$FIN --fileout file:$FOUT --pileup_input "$PU_INPUT" --python_filename $CFGNAME --no_exec
+    cmsDriver.py step1 --mc --eventcontent PREMIXRAW --datatier GEN-SIM-RAW --conditions $CONDITIONS --step DIGI,DATAMIX,L1,DIGI2RAW,HLT:2023v12 --procModifiers premix_stage2 --nThreads 4 --geometry DB:Extended --datamix PreMix --era $ERA --filein file:$FIN --fileout file:$FOUT --pileup_input "$PU_INPUT" --python_filename $CFGNAME --no_exec
     
     # DRPremix step2
     FIN=DIGI-00000.root
     FOUT=RECO-00000.root
     CFGNAME=2023_RECO_cfg.py
-    cmsDriver.py step2 --mc --eventcontent AODSIM --datatier AODSIM --conditions $CONDITIONS --step RAW2DIGI,L1Reco,RECO,RECOSIM --procModifiers siPixelQualityRawToDigi --nThreads 4 --geometry DB:Extended --era $ERA --filein file:$FIN --fileout file:$FOUT --python_filename $CFGNAME --no_exec
+    cmsDriver.py step2 --mc --eventcontent AODSIM --datatier AODSIM --conditions $CONDITIONS --step RAW2DIGI,L1Reco,RECO,RECOSIM --nThreads 4 --geometry DB:Extended --era $ERA --filein file:$FIN --fileout file:$FOUT --python_filename $CFGNAME --no_exec
 )
 
 # 2023BPix LHE+GEN+RECO
@@ -127,13 +125,13 @@ setup_rel(){
     FIN=SIM-00000.root
     FOUT=DIGI-00000.root
     CFGNAME=2023BPix_DIGI_cfg.py
-    cmsDriver.py step1 --mc --eventcontent PREMIXRAW --datatier GEN-SIM-RAW --conditions $CONDITIONS --step DIGI,DATAMIX,L1,DIGI2RAW,HLT:2022v12 --procModifiers premix_stage2,siPixelQualityRawToDigi --nThreads 4 --geometry DB:Extended --datamix PreMix --era $ERA --filein file:$FIN --fileout file:$FOUT --pileup_input "$PU_INPUT" --python_filename $CFGNAME --no_exec
+    cmsDriver.py step1 --mc --eventcontent PREMIXRAW --datatier GEN-SIM-RAW --conditions $CONDITIONS --step DIGI,DATAMIX,L1,DIGI2RAW,HLT:2022v12 --procModifiers premix_stage2 --nThreads 4 --geometry DB:Extended --datamix PreMix --era $ERA --filein file:$FIN --fileout file:$FOUT --pileup_input "$PU_INPUT" --python_filename $CFGNAME --no_exec
     
     # DRPremix step2
     FIN=DIGI-00000.root
     FOUT=RECO-00000.root
     CFGNAME=2023BPix_RECO_cfg.py
-    cmsDriver.py step2 --mc --eventcontent AODSIM --datatier AODSIM --conditions $CONDITIONS --step RAW2DIGI,L1Reco,RECO,RECOSIM --procModifiers siPixelQualityRawToDigi --nThreads 4 --geometry DB:Extended --era $ERA --filein file:$FIN --fileout file:$FOUT --python_filename $CFGNAME --no_exec
+    cmsDriver.py step2 --mc --eventcontent AODSIM --datatier AODSIM --conditions $CONDITIONS --step RAW2DIGI,L1Reco,RECO,RECOSIM --nThreads 4 --geometry DB:Extended --era $ERA --filein file:$FIN --fileout file:$FOUT --python_filename $CFGNAME --no_exec
 )
 
 # MAODv4

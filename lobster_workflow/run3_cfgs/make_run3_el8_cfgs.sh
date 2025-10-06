@@ -4,10 +4,8 @@
 
 # See: https://twiki.cern.ch/twiki/bin/view/CMS/PdmVRun3Analysis#Recipes_for_Run3Summer22_and_Run
 
-# export SCRAM_ARCH=export SCRAM_ARCH=el8_amd64_gcc11
-# export SCRAM_ARCH=export SCRAM_ARCH=el9_amd64_gcc11
 source /cvmfs/cms.cern.ch/cmsset_default.sh
-export SCRAM_ARCH=el8_amd64_gcc11
+export SCRAM_ARCH=el8_amd64_gcc10
 
 setup_rel(){
     printf "\nSet up CMSSW release for $1...\n"
