@@ -29,7 +29,10 @@ setup_rel(){
 
 # 2022 LHE+GEN+RECO
 (
+    cmssw-el8
     export SCRAM_ARCH=el8_amd64_gcc11
+
+
     REL=CMSSW_12_4_14_patch3
     CONDITIONS=124X_mcRun3_2022_realistic_v12
     BEAMSPOT=Realistic25ns13p6TeVEarly2022Collision
@@ -79,11 +82,15 @@ setup_rel(){
     FOUT=RECO-00000.root
     CFGNAME=2022_RECO_cfg.py
     cmsDriver.py step2 --mc --eventcontent AODSIM --datatier AODSIM --conditions $CONDITIONS --step RAW2DIGI,L1Reco,RECO,RECOSIM --procModifiers siPixelQualityRawToDigi --nThreads 4 --geometry DB:Extended --era $ERA --filein file:$FIN --fileout file:$FOUT --python_filename $CFGNAME --no_exec
+
+    exit
 )
 
 # 2022EE LHE+GEN+RECO
 (
+    cmssw-el8
     export SCRAM_ARCH=el8_amd64_gcc11
+
     REL=CMSSW_12_4_14_patch3
     CONDITIONS=124X_mcRun3_2022_realistic_postEE_v3
     BEAMSPOT=Realistic25ns13p6TeVEarly2022Collision
@@ -133,11 +140,15 @@ setup_rel(){
     FOUT=RECO-00000.root
     CFGNAME=2022EE_RECO_cfg.py
     cmsDriver.py step2 --mc --eventcontent AODSIM --datatier AODSIM --conditions $CONDITIONS --step RAW2DIGI,L1Reco,RECO,RECOSIM --procModifiers siPixelQualityRawToDigi --nThreads 4 --geometry DB:Extended --era $ERA --filein file:$FIN --fileout file:$FOUT --python_filename $CFGNAME --no_exec
+
+    exit
 )
 
 # 2023 LHE+GEN+RECO
 (
+    cmssw-el9
     export SCRAM_ARCH=el9_amd64_gcc11
+
     REL=CMSSW_13_0_13
     CONDITIONS=130X_mcRun3_2023_realistic_v14
     BEAMSPOT=Realistic25ns13p6TeVEarly2023Collision
@@ -187,11 +198,15 @@ setup_rel(){
     FOUT=RECO-00000.root
     CFGNAME=2023_RECO_cfg.py
     cmsDriver.py step2 --mc --eventcontent AODSIM --datatier AODSIM --conditions $CONDITIONS --step RAW2DIGI,L1Reco,RECO,RECOSIM --procModifiers siPixelQualityRawToDigi --nThreads 4 --geometry DB:Extended --era $ERA --filein file:$FIN --fileout file:$FOUT --python_filename $CFGNAME --no_exec
+
+    exit
 )
 
 # 2023BPix LHE+GEN+RECO
 (
+    cmssw-el9
     export SCRAM_ARCH=el9_amd64_gcc11
+
     REL=CMSSW_13_0_13
     CONDITIONS=130X_mcRun3_2023_realistic_postBPix_v2
     BEAMSPOT=Realistic25ns13p6TeVEarly2023Collision
@@ -241,11 +256,15 @@ setup_rel(){
     FOUT=RECO-00000.root
     CFGNAME=2023BPix_RECO_cfg.py
     cmsDriver.py step2 --mc --eventcontent AODSIM --datatier AODSIM --conditions $CONDITIONS --step RAW2DIGI,L1Reco,RECO,RECOSIM --procModifiers siPixelQualityRawToDigi --nThreads 4 --geometry DB:Extended --era $ERA --filein file:$FIN --fileout file:$FOUT --python_filename $CFGNAME --no_exec
+
+    exit
 )
 
 # MAODv4
 (
+    cmssw-el9
     export SCRAM_ARCH=el9_amd64_gcc11
+
     REL=CMSSW_13_0_13
     FRAGMENT=baseline_custom_ND-fragment.py
     COMMON="step1 --mc --eventcontent MINIAODSIM --datatier MINIAODSIM --step PAT --nThreads 2 --geometry DB:Extended"
@@ -278,11 +297,15 @@ setup_rel(){
     CONDITIONS=130X_mcRun3_2023_realistic_postBPix_v2
     ERA=Run3_2023
     cmsDriver.py $COMMON --conditions $CONDITIONS --era $ERA --filein file:$FIN --fileout file:$FOUT
+
+    exit
 )
 
 # NAODv12
 (
+    cmssw-el9
     export SCRAM_ARCH=el9_amd64_gcc11
+
     REL=CMSSW_13_0_13
     FRAGMENT=baseline_custom_ND-fragment.py
     COMMON="--mc --eventcontent NANOEDMAODSIM --datatier NANOAODSIM --step NANO --nThreads 4 --scenario pp"
@@ -315,4 +338,6 @@ setup_rel(){
     CONDITIONS=130X_mcRun3_2023_realistic_postBPix_v2
     ERA=Run3_2023
     cmsDriver.py step1 $COMMON --conditions $CONDITIONS --era $ERA --filein file:$FOUT --fileout file:$FIN
+
+    exit
 )
