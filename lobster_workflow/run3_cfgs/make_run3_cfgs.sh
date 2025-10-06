@@ -4,7 +4,7 @@
 
 # See: https://twiki.cern.ch/twiki/bin/view/CMS/PdmVRun3Analysis#Recipes_for_Run3Summer22_and_Run
 
-MGPROD=$(git --rev-parse --show-toplevel)/lobster_workflow
+MGPROD=$(git rev-parse --show-toplevel)/lobster_workflow
 
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 
