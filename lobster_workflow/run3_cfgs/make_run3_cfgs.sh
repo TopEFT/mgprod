@@ -41,7 +41,7 @@ setup_rel(){
     PU_INPUT=dbs:/Neutrino_E-10_gun/Run3Summer21PrePremix-Summer22_124X_mcRun3_2022_realistic_v11-v2/PREMIX
 
     # LHE
-    FRAGMENT=baseline_custom_ND-fragment.py
+    FRAGMENT=run3/baseline_custom_ND-fragment.py
     FOUT=LHE-00000.root
     CFGNAME=2022_LHE_cfg.py
     setup_rel $REL $FRAGMENT
@@ -95,7 +95,7 @@ setup_rel(){
     PU_INPUT=dbs:/Neutrino_E-10_gun/Run3Summer21PrePremix-Summer22_124X_mcRun3_2022_realistic_v11-v2/PREMIX
 
     # LHE
-    FRAGMENT=baseline_custom_ND-fragment.py
+    FRAGMENT=run3/baseline_custom_ND-fragment.py
     FOUT=LHE-00000.root
     CFGNAME=2022EE_LHE_cfg.py
     setup_rel $REL $FRAGMENT
@@ -149,7 +149,7 @@ setup_rel(){
     PU_INPUT=dbs:/Neutrino_E-10_gun/Run3Summer21PrePremix-Summer23_130X_mcRun3_2023_realistic_v13-v1/PREMIX
 
     # LHE
-    FRAGMENT=baseline_custom_ND-fragment.py
+    FRAGMENT=run3/baseline_custom_ND-fragment.py
     FOUT=LHE-00000.root
     CFGNAME=2023_LHE_cfg.py
     setup_rel $REL $FRAGMENT
@@ -203,7 +203,7 @@ setup_rel(){
     PU_INPUT=dbs:/Neutrino_E-10_gun/Run3Summer21PrePremix-Summer23BPix_130X_mcRun3_2023_realistic_postBPix_v1-v1/PREMIX
 
     # LHE
-    FRAGMENT=baseline_custom_ND-fragment.py
+    FRAGMENT=run3/baseline_custom_ND-fragment.py
     FOUT=LHE-00000.root
     CFGNAME=2023_LHE_cfg.py
     setup_rel $REL $FRAGMENT
