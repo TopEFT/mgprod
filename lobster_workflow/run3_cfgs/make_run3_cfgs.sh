@@ -19,7 +19,7 @@ setup_rel(){
     cd $1/src
     eval `scram runtime -sh`
 
-    FDIR=$MGPROD/fragments # Dir of fragments, relative to CMSSW/src
+    FDIR=$MGPROD/fragments/run3 # Dir of fragments, relative to CMSSW/src
 
     mkdir -p ./Configuration/GenProduction/python/ # Make a directory for the fragment if it does not already exist
     cp $FDIR/$2 ./Configuration/GenProduction/python/ # Copy the fragment to the  directory
@@ -41,7 +41,7 @@ setup_rel(){
     PU_INPUT=dbs:/Neutrino_E-10_gun/Run3Summer21PrePremix-Summer22_124X_mcRun3_2022_realistic_v11-v2/PREMIX
 
     # LHE
-    FRAGMENT=run3/baseline_custom_ND-fragment.py
+    FRAGMENT=baseline_custom_ND-fragment.py
     FOUT=LHE-00000.root
     CFGNAME=2022_LHE_cfg.py
     setup_rel $REL $FRAGMENT
@@ -51,17 +51,17 @@ setup_rel(){
     FIN=LHE-00000.root
     FOUT=GEN-00000.root
     
-    FRAGMENT=run3/ttlnuJets_custom_ND-fragment.py
+    FRAGMENT=ttlnuJets_custom_ND-fragment.py
     setup_rel $REL $FRAGMENT
     CFGNAME=2022_GEN-ttlnuJet_cfg.py
     cmsDriver.py Configuration/GenProduction/python/$FRAGMENT --mc --eventcontent RAWSIM --datatier GEN --conditions $CONDITIONS --beamspot $BEAMSPOT --step GEN --geometry DB:Extended --era $ERA --fileout file:$FOUT --filein file:$FIN --python_filename $CFGNAME --no_exec
 
-    FRAGMENT=run3/ttHJets_custom_ND-fragment.py
+    FRAGMENT=ttHJets_custom_ND-fragment.py
     setup_rel $REL $FRAGMENT
     CFGNAME=2022_GEN-ttHJet_cfg.py
     cmsDriver.py Configuration/GenProduction/python/$FRAGMENT --mc --eventcontent RAWSIM --datatier GEN --conditions $CONDITIONS --beamspot $BEAMSPOT --step GEN --geometry DB:Extended --era $ERA --fileout file:$FOUT --filein file:$FIN --python_filename $CFGNAME --no_exec
 
-    FRAGMENT=run3/ttlnu_custom_ND-fragment.py
+    FRAGMENT=ttlnu_custom_ND-fragment.py
     setup_rel $REL $FRAGMENT
     CFGNAME=2022_GEN-ttlnu_cfg.py
     cmsDriver.py Configuration/GenProduction/python/$FRAGMENT --mc --eventcontent RAWSIM --datatier GEN --conditions $CONDITIONS --beamspot $BEAMSPOT --step GEN --geometry DB:Extended --era $ERA --fileout file:$FOUT --filein file:$FIN --python_filename $CFGNAME --no_exec
@@ -95,7 +95,7 @@ setup_rel(){
     PU_INPUT=dbs:/Neutrino_E-10_gun/Run3Summer21PrePremix-Summer22_124X_mcRun3_2022_realistic_v11-v2/PREMIX
 
     # LHE
-    FRAGMENT=run3/baseline_custom_ND-fragment.py
+    FRAGMENT=baseline_custom_ND-fragment.py
     FOUT=LHE-00000.root
     CFGNAME=2022EE_LHE_cfg.py
     setup_rel $REL $FRAGMENT
@@ -105,17 +105,17 @@ setup_rel(){
     FIN=LHE-00000.root
     FOUT=GEN-00000.root
 
-    FRAGMENT=run3/ttlnuJets_custom_ND-fragment.py
+    FRAGMENT=ttlnuJets_custom_ND-fragment.py
     setup_rel $REL $FRAGMENT
     CFGNAME=2022EE_GEN-ttlnuJet_cfg.py
     cmsDriver.py Configuration/GenProduction/python/$FRAGMENT --mc --eventcontent RAWSIM --datatier GEN --conditions $CONDITIONS --beamspot $BEAMSPOT --step GEN --geometry DB:Extended --era $ERA --fileout file:$FOUT --filein file:$FIN --python_filename $CFGNAME --no_exec
 
-    FRAGMENT=run3/ttHJets_custom_ND-fragment.py
+    FRAGMENT=ttHJets_custom_ND-fragment.py
     setup_rel $REL $FRAGMENT
     CFGNAME=2022EE_GEN-ttHJet_cfg.py
     cmsDriver.py Configuration/GenProduction/python/$FRAGMENT --mc --eventcontent RAWSIM --datatier GEN --conditions $CONDITIONS --beamspot $BEAMSPOT --step GEN --geometry DB:Extended --era $ERA --fileout file:$FOUT --filein file:$FIN --python_filename $CFGNAME --no_exec
 
-    FRAGMENT=run3/ttlnu_custom_ND-fragment.py
+    FRAGMENT=ttlnu_custom_ND-fragment.py
     setup_rel $REL $FRAGMENT
     CFGNAME=2022EE_GEN-ttlnu_cfg.py
     cmsDriver.py Configuration/GenProduction/python/$FRAGMENT --mc --eventcontent RAWSIM --datatier GEN --conditions $CONDITIONS --beamspot $BEAMSPOT --step GEN --geometry DB:Extended --era $ERA --fileout file:$FOUT --filein file:$FIN --python_filename $CFGNAME --no_exec
@@ -149,7 +149,7 @@ setup_rel(){
     PU_INPUT=dbs:/Neutrino_E-10_gun/Run3Summer21PrePremix-Summer23_130X_mcRun3_2023_realistic_v13-v1/PREMIX
 
     # LHE
-    FRAGMENT=run3/baseline_custom_ND-fragment.py
+    FRAGMENT=baseline_custom_ND-fragment.py
     FOUT=LHE-00000.root
     CFGNAME=2023_LHE_cfg.py
     setup_rel $REL $FRAGMENT
@@ -159,17 +159,17 @@ setup_rel(){
     FIN=LHE-00000.root
     FOUT=GEN-00000.root
 
-    FRAGMENT=run3/ttlnuJets_custom_ND-fragment.py
+    FRAGMENT=ttlnuJets_custom_ND-fragment.py
     setup_rel $REL $FRAGMENT
     CFGNAME=2023_GEN-ttlnuJet_cfg.py
     cmsDriver.py Configuration/GenProduction/python/$FRAGMENT --mc --eventcontent RAWSIM --datatier GEN --conditions $CONDITIONS --beamspot $BEAMSPOT --step GEN --geometry DB:Extended --era $ERA --fileout file:$FOUT --filein file:$FIN --python_filename $CFGNAME --no_exec
 
-    FRAGMENT=run3/ttHJets_custom_ND-fragment.py
+    FRAGMENT=ttHJets_custom_ND-fragment.py
     setup_rel $REL $FRAGMENT
     CFGNAME=2023_GEN-ttHJet_cfg.py
     cmsDriver.py Configuration/GenProduction/python/$FRAGMENT --mc --eventcontent RAWSIM --datatier GEN --conditions $CONDITIONS --beamspot $BEAMSPOT --step GEN --geometry DB:Extended --era $ERA --fileout file:$FOUT --filein file:$FIN --python_filename $CFGNAME --no_exec
 
-    FRAGMENT=run3/ttlnu_custom_ND-fragment.py
+    FRAGMENT=ttlnu_custom_ND-fragment.py
     setup_rel $REL $FRAGMENT
     CFGNAME=2023_GEN-ttlnu_cfg.py
     cmsDriver.py Configuration/GenProduction/python/$FRAGMENT --mc --eventcontent RAWSIM --datatier GEN --conditions $CONDITIONS --beamspot $BEAMSPOT --step GEN --geometry DB:Extended --era $ERA --fileout file:$FOUT --filein file:$FIN --python_filename $CFGNAME --no_exec
@@ -203,7 +203,7 @@ setup_rel(){
     PU_INPUT=dbs:/Neutrino_E-10_gun/Run3Summer21PrePremix-Summer23BPix_130X_mcRun3_2023_realistic_postBPix_v1-v1/PREMIX
 
     # LHE
-    FRAGMENT=run3/baseline_custom_ND-fragment.py
+    FRAGMENT=baseline_custom_ND-fragment.py
     FOUT=LHE-00000.root
     CFGNAME=2023_LHE_cfg.py
     setup_rel $REL $FRAGMENT
@@ -213,17 +213,17 @@ setup_rel(){
     FIN=LHE-00000.root
     FOUT=GEN-00000.root
 
-    FRAGMENT=run3/ttlnuJets_custom_ND-fragment.py
+    FRAGMENT=ttlnuJets_custom_ND-fragment.py
     setup_rel $REL $FRAGMENT
     CFGNAME=2023BPix_GEN-ttlnuJet_cfg.py
     cmsDriver.py Configuration/GenProduction/python/$FRAGMENT --mc --eventcontent RAWSIM --datatier GEN --conditions $CONDITIONS --beamspot $BEAMSPOT --step GEN --geometry DB:Extended --era $ERA --fileout file:$FOUT --filein file:$FIN --python_filename $CFGNAME --no_exec
 
-    FRAGMENT=run3/ttHJets_custom_ND-fragment.py
+    FRAGMENT=ttHJets_custom_ND-fragment.py
     setup_rel $REL $FRAGMENT
     CFGNAME=2023BPix_GEN-ttHJets_cfg.py
     cmsDriver.py Configuration/GenProduction/python/$FRAGMENT --mc --eventcontent RAWSIM --datatier GEN --conditions $CONDITIONS --beamspot $BEAMSPOT --step GEN --geometry DB:Extended --era $ERA --fileout file:$FOUT --filein file:$FIN --python_filename $CFGNAME --no_exec
 
-    FRAGMENT=run3/ttlnu_custom_ND-fragment.py
+    FRAGMENT=ttlnu_custom_ND-fragment.py
     setup_rel $REL $FRAGMENT
     CFGNAME=2023BPix_GEN-ttlnu_cfg.py
     cmsDriver.py Configuration/GenProduction/python/$FRAGMENT --mc --eventcontent RAWSIM --datatier GEN --conditions $CONDITIONS --beamspot $BEAMSPOT --step GEN --geometry DB:Extended --era $ERA --fileout file:$FOUT --filein file:$FIN --python_filename $CFGNAME --no_exec
