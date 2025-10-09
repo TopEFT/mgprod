@@ -2,7 +2,7 @@
 
 # Need to be executed within cmssw-el8 container
 
-# See: https://twiki.cern.ch/twiki/bin/view/CMS/PdmVRun3Analysis#Recipes_for_Run3Summer22_and_Run
+# See: https://twiki.cern.ch/twiki/bin/view/CMS/PdmVRun3Analysis#Monte_Carlo
 
 MGPROD=$(git rev-parse --show-toplevel)/lobster_workflow
 
@@ -20,6 +20,32 @@ setup_rel(){
     eval `scram runtime -sh`
 
     FDIR=$MGPROD/fragments/run3 # Dir of fragments, relative to CMSSW/src
+
+    if [ "$1" == "CMSSW_13_0_13" ] && [ ! -r PhysicsTools ] ; then
+        # Need to checkout package for haddnano and custom EFT weights handler for Nano step
+        git cms-init
+        echo "Adding pkg PhysicsTools/NanoAOD"
+        git cms-addpkg PhysicsTools/NanoAOD
+        cd PhysicsTools/NanoAOD/
+        git remote add eftfit git@github.com:bryates/cmssw.git
+        git fetch eftfit
+        git cherry-pick 869fdb3011b1d864d3d85090ee4e22ea3fdb32f9
+        git cherry-pick 493da24362983cb78b0e9ad75f3cc6d824b54f5e
+        git cherry-pick 10e20e3b235870519b870e3c3cfb13f9b23148e2
+        git cherry-pick bb9ab6f1b1cf5e786437f3d2e482bf50404e0d50
+
+        cd ../..
+
+        # Get our custom code for WCFit and WCPoint classes
+        git clone https://github.com/TopEFT/EFTGenReader.git
+
+        # Remove old incompatible unused code
+        rm -rf EFTGenReader/GenReader/
+        rm -rf EFTGenReader/LHEReader/
+
+        echo "Adding PhysicsTools/NanoAODTools"
+        git clone https://github.com/cms-nanoAOD/nanoAOD-tools.git PhysicsTools/NanoAODTools
+    fi
 
     mkdir -p ./Configuration/GenProduction/python/ # Make a directory for the fragment if it does not already exist
     cp $FDIR/$2 ./Configuration/GenProduction/python/ # Copy the fragment to the  directory
