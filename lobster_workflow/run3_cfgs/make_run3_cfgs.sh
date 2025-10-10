@@ -330,23 +330,23 @@ setup_rel(){
     CFGNAME=2022_NAODv12_cfg.py
     CONDITIONS=130X_mcRun3_2022_realistic_v5
     ERA=Run3
-    cmsDriver.py $COMMON --conditions $CONDITIONS --era $ERA --filein file:$FOUT --fileout file:$FOUT --python_filename $CFGNAME --no_exec
+    cmsDriver.py $COMMON --conditions $CONDITIONS --era $ERA --filein file:$FIN --fileout file:$FOUT --python_filename $CFGNAME --no_exec
 
     # 2022EE
     CFGNAME=2022EE_NAODv12_cfg.py
     CONDITIONS=130X_mcRun3_2022_realistic_postEE_v6
     ERA=Run3
-    cmsDriver.py $COMMON --conditions $CONDITIONS --era $ERA --filein file:$FOUT --fileout file:$FOUT --python_filename $CFGNAME --no_exec
+    cmsDriver.py $COMMON --conditions $CONDITIONS --era $ERA --filein file:$FIN --fileout file:$FOUT --python_filename $CFGNAME --no_exec
 
     # 2023
     CFGNAME=2023_NAODv12_cfg.py
     CONDITIONS=130X_mcRun3_2023_realistic_v14
     ERA=Run3_2023
-    cmsDriver.py $COMMON --conditions $CONDITIONS --era $ERA --filein file:$FOUT --fileout file:$FIN --python_filename $CFGNAME --no_exec
+    cmsDriver.py $COMMON --conditions $CONDITIONS --era $ERA --filein file:$FIN --fileout file:$FOUT --python_filename $CFGNAME --no_exec
 
     # 2023BPix
     CFGNAME=2023BPix_NAODv12_cfg.py
     CONDITIONS=130X_mcRun3_2023_realistic_postBPix_v2
     ERA=Run3_2023
-    cmsDriver.py $COMMON --conditions $CONDITIONS --era $ERA --filein file:$FOUT --fileout file:$FIN --python_filename $CFGNAME --no_exec
+    cmsDriver.py $COMMON --conditions $CONDITIONS --era $ERA --filein file:$FIN --fileout file:$FOUT --python_filename $CFGNAME --no_exec
 )
