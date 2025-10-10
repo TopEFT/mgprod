@@ -51,6 +51,9 @@ conda activate lobster
 export PATH=/afs/crc.nd.edu/group/ccl/software/x86_64/RedHat9/cctools/7.11.1/bin:$PATH
 ```
 
+> [!TIP]
+> It can be tedious always having to remember run the `unset` commands, so you can automate this by creating an alias for activating the lobster environment by adding `alias actcondalobs="unset PYTHONPATH ; unset PERL5LIB ; conda activate lobster"` to your `.bashrc` file.
+
 ### Actually cloning the repo
 Up to this point we haven't even had to deal with the `mgprod` repo itself! If you haven't done so yet, make sure to clone and checkout the repo before proceeding. The code for setting up and producing the run3 samples is currently on a separte branch, so we will need to switch to that branch in order to proceed:
 ```
