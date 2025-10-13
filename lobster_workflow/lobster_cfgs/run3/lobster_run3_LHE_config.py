@@ -80,11 +80,14 @@ fragment_map = {
 
 event_multiplier = {
     "default": 1.0,
+    "ttHJet": 3.0,
+    "ttllNuNuJetNoHiggs": 3.5,
+    "ttlnuJet": 2.5,
 }
 
 gridpacks = [
     # "example/path/to/gridpack/location/ttHJet_all22WCsStartPtCheckdim6TopMay20GST_run0_slc7_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz"
-    "awightma/gridpack_scans/run3/tests/ttHJet_ctWReTest13p6AxisScan_run0_slc7_amd64_gcc10_CMSSW_12_4_8_tarball.tar.xz"
+    # "awightma/gridpack_scans/run3/tests/ttHJet_ctWReTest13p6AxisScan_run0_slc7_amd64_gcc10_CMSSW_12_4_8_tarball.tar.xz"
 ]
 
 category_resources = {
