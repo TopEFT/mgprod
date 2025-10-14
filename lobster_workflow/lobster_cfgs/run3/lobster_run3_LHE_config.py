@@ -24,7 +24,7 @@ year = "2022"
 
 version = "v1"
 grp_tag = "test"
-prod_tag = "Round/Batch1"
+prod_tag = "Round1/Batch1"
 
 master_label = f"EFT_T3_{tstamp}"
 
@@ -80,7 +80,7 @@ fragment_map = {
 
 event_multiplier = {
     "default": 1.0,
-    "ttHJet": 3.0,
+    "ttHJet": 2.5,
     "ttllNuNuJetNoHiggs": 3.5,
     "ttlnuJet": 2.5,
 }
