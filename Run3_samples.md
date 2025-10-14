@@ -201,8 +201,8 @@ In order for the lobster tasks to get processed, we need to provide the lobster 
 
 The command to start a factory is `work_queue_factory`. We will need to specify a number of command-line options when executing this command. Below is an example of a fully specified command:
 ```bash
-nohup work_queue_factory -T condor -M lobster_$USER_.* --runos al8-wa-7.15.9 /
---scratch-dir /tmp/wq-$USER-factory -d all -o /tmp/$USER_lobster_factory_T3.debug /
+nohup work_queue_factory -T condor -M lobster_$USER_.* --runos al8-wa-7.15.9 \
+--scratch-dir /tmp/wq-$USER-factory -d all -o /tmp/$USER_lobster_factory_T3.debug \
 -C wq_factories/factory_EFT_T3_12c.json &
 ```
 Below is a description of the options used in the above command:
