@@ -22,26 +22,6 @@ cd lobster-python3
 git clone https://github.com/anpicci/lobster.git
 cd lobster
 git checkout lobster-python3-run3
-# There is a small typo in the latest commit (f7f585b) that we need to fix
-cd lobster/core/data
-sed -i -e 's|int(major) >= 7 int(major) < 12|int(major) >= 7 and int(major) < 12|g' task.py
-cd -
-
-# We need to unpin a number of packages in order to get ndcctools v7.15.11
-sed -i -e 's|- python=3.10.14|- python=3.11|g' lobster_env.yaml
-sed -i -e 's|- python_abi=3.10=4_cp310|- python_abi|g' lobster_env.yaml
-sed -i -e 's|- libsqlite=3.46.0|- libsqlite|g' lobster_env.yaml
-sed -i -e 's|- xz=5.2.6|- xz|g' lobster_env.yaml
-sed -i -e 's|- zstd=1.5.6|- zstd|g' lobster_env.yaml
-sed -i -e 's|- openssl=3.3.1|- openssl|g' lobster_env.yaml
-sed -i -e 's|- libuuid=2.38.1|- libuuid|g' lobster_env.yaml
-sed -i -e 's|- libiconv=1.17|- libiconv|g' lobster_env.yaml
-sed -i -e 's|- libgomp=13.2.0|- libgomp|g' lobster_env.yaml
-sed -i -e 's|- libgcc-ng=13.2.0|- libgcc-ng|g' lobster_env.yaml
-sed -i -e 's|- ndcctools=7.11.1|- ndcctools=7.15.11|g' lobster_env.yaml
-
-conda env create -f lobster_env.yaml -n lobster
-conda activate lobster
 
 # back to lobster-python3
 cd ..
