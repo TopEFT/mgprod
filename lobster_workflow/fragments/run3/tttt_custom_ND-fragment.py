@@ -31,6 +31,7 @@ pythia8aMCatNLOSettingsBlock,
 pythia8PSweightsSettingsBlock,
 processParameters = cms.vstring(
 'TimeShower:nPartonsInBorn = 4', #number of coloured particles (before resonance decays) in born matrix element
+'TauDecays:externalMode = 2'
         
 ),
 parameterSets = cms.vstring('pythia8CommonSettings',
