@@ -231,7 +231,7 @@ setup_rel(){
     # LHE
     FRAGMENT=baseline_custom_ND-fragment.py
     FOUT=LHE-00000.root
-    CFGNAME=2023_LHE_cfg.py
+    CFGNAME=2023BPix_LHE_cfg.py
     setup_rel $REL $FRAGMENT
     cmsDriver.py Configuration/GenProduction/python/$FRAGMENT --mc --eventcontent LHE --datatier LHE --conditions $CONDITIONS --beamspot $BEAMSPOT --step LHE --era $ERA --fileout file:$FOUT --python_filename $CFGNAME --no_exec
 
