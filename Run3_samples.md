@@ -44,7 +44,7 @@ unset PYTHONPATH
 unset PERL5LIB
 conda activate lobster
 # Needed to use parrot_run when sandboxing CMSSW
-export PATH=/afs/crc.nd.edu/group/ccl/software/x86_64/RedHat9/cctools/7.11.1/bin:$PATH
+cp /afs/crc.nd.edu/group/ccl/software/x86_64/redhat7/cctools/lobster-171-cd5e3e2c-cvmfs-70dfa0d6/bin/parrot_cvmfs_static_run $CONDA_PREFIX/bin/parrot_run
 ```
 
 > [!TIP]
