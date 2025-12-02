@@ -319,7 +319,7 @@ setup_rel(){
     export SCRAM_ARCH=el8_amd64_gcc11
     REL=CMSSW_13_0_13
     FRAGMENT=baseline_custom_ND-fragment.py
-    COMMON="step1 --mc --eventcontent NANOEDMAODSIM --datatier NANOAODSIM --step NANO --nThreads 4 --scenario pp"
+    COMMON="step1 --mc --eventcontent NANOAODSIM --datatier NANOAODSIM --step NANO --nThreads 4 --scenario pp"
     FIN=MAOD-00000.root
     FOUT=NAOD-00000.root
 
